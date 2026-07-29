@@ -1,4 +1,3 @@
-import AgentModal from './AgentModal'
 import './CallWidget.css'
 
 interface CallWidgetProps {
