@@ -1,5 +1,7 @@
 # Casa Serena Apartments — Voice AI Leasing Agent
 
+> **Disclaimer:** Casa Serena Apartments is a fictional community created for this educational/portfolio project. This is not an attempt to impersonate any real business or property management company. The name was selected randomly and serves solely as a demonstration context for this full-stack AI voice agent implementation.
+
 A production-grade voice AI system for apartment communities featuring end-to-end multi-intent conversation handling, database-layer security enforcement, and zero hardcoded secrets. Prospects can inquire about availability and schedule tours; residents can access FAQs and file maintenance requests—all through natural voice interaction.
 
 ---
