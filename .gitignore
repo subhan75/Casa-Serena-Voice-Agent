@@ -67,13 +67,20 @@ ehthumbs.db
 Thumbs.db
 
 # ============================================================================
-# SCRATCH & REFERENCE DOCUMENTS (NOT PART OF OFFICIAL PROJECT)
+# REFERENCE DOCUMENTATION (working docs, not official project docs)
 # ============================================================================
+Reference_Docs/
 PHASE*.md
 TOOL_DESCRIPTIONS.md
 VAPI_SETUP.md
-/Reference_Docs/
+EDGE_FUNCTIONS_SETUP.md
+FUNCTION_REFERENCE.md
+SETUP_DEPENDENCIES.md
+INSTALL.md
 test-agent.js
+OPEN_SOURCE_READY.md
+SECURITY_AUDIT_REPORT.md
+references_for_claude_code.md
 
 # ============================================================================
 # PYTHON (if using virtual env)
