@@ -1,94 +1,39 @@
-import { useEffect, useRef } from 'react'
+import AgentModal from './AgentModal'
 import './CallWidget.css'
 
-declare global {
-  interface Window {
-    VapiClientSDK: any
-  }
+interface CallWidgetProps {
+  onOpenModal: () => void
 }
 
-export default function CallWidget() {
-  const vapi = useRef<any>(null)
-  const isInitializing = useRef(false)
-
-  useEffect(() => {
-    if (isInitializing.current) return
-    isInitializing.current = true
-
-    const initVapi = async () => {
-      try {
-        // Load Vapi SDK
-        const script = document.createElement('script')
-        script.src = 'https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/build/index.js'
-        script.async = true
-        script.onload = () => {
-          const vapiKey = import.meta.env.VITE_VAPI_PUBLIC_KEY
-          if (!vapiKey) {
-            console.error('VITE_VAPI_PUBLIC_KEY not set in environment')
-            return
-          }
-
-          vapi.current = new (window as any).Vapi({
-            apiKey: vapiKey,
-          })
-        }
-        document.head.appendChild(script)
-      } catch (error) {
-        console.error('Failed to initialize Vapi:', error)
-      }
-    }
-
-    initVapi()
-
-    return () => {
-      if (vapi.current) {
-        try {
-          vapi.current.stop()
-        } catch (error) {
-          console.error('Error stopping Vapi:', error)
-        }
-      }
-    }
-  }, [])
-
-  const handleStartCall = () => {
-    if (!vapi.current) {
-      console.error('Vapi not initialized')
-      return
-    }
-
-    try {
-      vapi.current.start()
-    } catch (error) {
-      console.error('Failed to start call:', error)
-    }
-  }
-
-  const handleStopCall = () => {
-    if (!vapi.current) return
-
-    try {
-      vapi.current.stop()
-    } catch (error) {
-      console.error('Failed to stop call:', error)
-    }
-  }
+export default function CallWidget({ onOpenModal }: CallWidgetProps) {
+  const agentPhone = '636-481-9140'
 
   return (
-    <div className="call-widget">
-      <div className="call-widget-buttons">
-        <button className="call-btn start-btn" onClick={handleStartCall}>
-          <span className="btn-icon">📞</span>
-          <span>Start Call</span>
-        </button>
-        <button className="call-btn stop-btn" onClick={handleStopCall}>
-          <span className="btn-icon">⏹️</span>
-          <span>End Call</span>
-        </button>
+    <>
+      <div className="call-widget">
+        <div className="call-widget-content">
+          <div className="phone-icon">☎️</div>
+          <h3>Speak with Our Agent</h3>
+          <p className="description">
+            Call our apartment specialist to ask about availability, pricing, tours, or any questions you have.
+          </p>
+
+          <div className="phone-display">
+            <p className="phone-label">Call Now</p>
+            <a href={`tel:${agentPhone.replace(/-/g, '')}`} className="phone-number">
+              {agentPhone}
+            </a>
+          </div>
+
+          <button className="learn-more-btn" onClick={onOpenModal}>
+            Learn More About Our AI Agent
+          </button>
+
+          <p className="info-text">
+            Available 24/7 • Direct connection • No wait time
+          </p>
+        </div>
       </div>
-      <p className="call-widget-info">
-        Your browser microphone and speakers will be used. Make sure they're enabled.
-      </p>
-    </div>
+    </>
   )
 }

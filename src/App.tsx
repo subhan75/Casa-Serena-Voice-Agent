@@ -4,10 +4,12 @@ import Listings from './components/Listings'
 import FAQ from './components/FAQ'
 import CallWidget from './components/CallWidget'
 import Dashboard from './components/Dashboard'
+import AgentModal from './components/AgentModal'
 import './App.css'
 
 function App() {
   const [activeSection, setActiveSection] = useState<'home' | 'dashboard'>('home')
+  const [isAgentModalOpen, setIsAgentModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +58,7 @@ function App() {
 
       {activeSection === 'home' ? (
         <main>
-          <Hero />
+          <Hero onOpenModal={() => setIsAgentModalOpen(true)} />
 
           <section data-section="listings" className="section">
             <div className="container">
@@ -77,7 +79,7 @@ function App() {
                     Curious about availability, pricing, or policies? Our voice AI agent is ready to help.
                     Ask about units, book a tour, or file a maintenance request if you're a resident.
                   </p>
-                  <CallWidget />
+                  <CallWidget onOpenModal={() => setIsAgentModalOpen(true)} />
                 </div>
               </div>
             </div>
@@ -116,7 +118,7 @@ function App() {
             </div>
             <div className="footer-section">
               <h4>Contact</h4>
-              <p>Built with Supabase, Vapi, and React</p>
+              <p>Built with Supabase and React</p>
             </div>
           </div>
           <div className="footer-bottom">
@@ -124,6 +126,8 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <AgentModal isOpen={isAgentModalOpen} onClose={() => setIsAgentModalOpen(false)} />
     </div>
   )
 }

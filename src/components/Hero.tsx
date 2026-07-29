@@ -1,4 +1,8 @@
-export default function Hero() {
+interface HeroProps {
+  onOpenModal: () => void
+}
+
+export default function Hero({ onOpenModal }: HeroProps) {
   return (
     <section className="hero-section">
       <div className="container">
@@ -8,9 +12,9 @@ export default function Hero() {
             A modern apartment community where voice AI helps you explore units,
             book tours, and get answers instantly.
           </p>
-          <a href="#call-widget" className="hero-cta">
+          <button className="hero-cta" onClick={onOpenModal}>
             Call Our AI Agent
-          </a>
+          </button>
         </div>
       </div>
     </section>
