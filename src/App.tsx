@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import Hero from './components/Hero'
 import Listings from './components/Listings'
 import FAQ from './components/FAQ'
@@ -128,6 +129,7 @@ function App() {
       </footer>
 
       <AgentModal isOpen={isAgentModalOpen} onClose={() => setIsAgentModalOpen(false)} />
+      <Analytics />
     </div>
   )
 }
