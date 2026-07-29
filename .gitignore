@@ -80,7 +80,7 @@ INSTALL.md
 test-agent.js
 OPEN_SOURCE_READY.md
 SECURITY_AUDIT_REPORT.md
-references_for_claude_code.md
+CLAUDE.md
 
 # ============================================================================
 # PYTHON (if using virtual env)
